@@ -1,6 +1,10 @@
 spring:
   application:
     name: cidemo
+  profiles:
+    active: dev
+    # active: ${ENV}
 
 server:
   port: 8888
+  # port: ${PORT}
