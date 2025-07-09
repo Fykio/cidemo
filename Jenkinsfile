@@ -31,8 +31,7 @@ pipeline {
         // Stage 3: Build Docker image
         stage('Build Docker Image') {
             steps {
-                sh 'read -p "Enter image version: " IMAGE_VERSION'
-                sh 'docker build -t fykio/cidemo:v${IMAGE_VERSION} .'
+                sh 'docker build -t fykio/cidemo:v${BUILD_ID} .'
             }
         }
 
@@ -40,7 +39,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 withDockerRegistry([credentialsId: "DockerHub", url: ""]) {
-                    sh 'docker push fykio/cidemo:v${IMAGE_VERSION}'
+                    sh 'docker push fykio/cidemo:v${BUILD_ID}'
                 }
             }
         }
