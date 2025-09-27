@@ -38,8 +38,10 @@ pipeline {
         // Stage 4: Push Docker image to Docker Hub
         stage('Push Docker Image') {
             steps {
-                docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {
-                    sh 'docker push fykio/cidemo:v${BUILD_ID}'
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {
+                        sh 'docker push fykio/cidemo:v${BUILD_ID}'
+                    }
                 }
             }
         }
